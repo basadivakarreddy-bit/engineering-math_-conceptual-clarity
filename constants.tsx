@@ -291,6 +291,53 @@ export const LEARNING_TOPICS: LearningTopic[] = [
           { name: 'b', label: 'Limit (b)', default: 5, min: 1, max: 20, step: 1 }
         ],
         calculate: (v) => `Area = ${(v.k * Math.pow(v.b, v.n + 1) / (v.n + 1)).toFixed(2)} units²`
+      },
+      {
+        id: 'int-f2',
+        name: 'Integration by Parts',
+        interactiveFormula: '∫ u dv = uv - ∫ v du',
+        formulaBreakdown: [
+          { component: 'u', meaning: 'Function chosen to be differentiated.' },
+          { component: 'dv', meaning: 'Function chosen to be integrated.' },
+          { component: 'uv', meaning: 'The product of the two functions.' }
+        ],
+        variables: [
+          { name: 'u', label: 'u(x) value', default: 5, min: 1, max: 10, step: 0.5 },
+          { name: 'v', label: 'v(x) value', default: 2, min: 1, max: 10, step: 0.5 },
+          { name: 'du', label: 'du value', default: 1, min: 0.1, max: 5, step: 0.1 },
+          { name: 'int_vdu', label: 'Integral(v du)', default: 3, min: 0, max: 10, step: 0.5 }
+        ],
+        calculate: (v) => `Result = ${(v.u * v.v - v.int_vdu).toFixed(2)}`
+      },
+      {
+        id: 'int-f3',
+        name: 'Solid of Revolution',
+        interactiveFormula: 'V = π * Integral([f(x)]^2 dx)',
+        formulaBreakdown: [
+          { component: 'π', meaning: 'Circle constant for rotation.' },
+          { component: '[f(x)]^2', meaning: 'Radius squared (area of disk).' },
+          { component: 'dx', meaning: 'Thickness of the disk.' }
+        ],
+        variables: [
+          { name: 'r', label: 'Radius f(x)', default: 3, min: 0.5, max: 10, step: 0.5 },
+          { name: 'h', label: 'Height/Length', default: 5, min: 1, max: 20, step: 1 }
+        ],
+        calculate: (v) => `Volume ≈ ${(Math.PI * Math.pow(v.r, 2) * v.h).toFixed(2)} units³`
+      },
+      {
+        id: 'int-f4',
+        name: 'Arc Length',
+        interactiveFormula: 'L = Integral(sqrt(1 + [f\'(x)]^2) dx)',
+        formulaBreakdown: [
+          { component: '1', meaning: 'Horizontal component (dx/dx).' },
+          { component: '[f\'(x)]^2', meaning: 'Slope squared.' },
+          { component: 'sqrt', meaning: 'Pythagorean theorem application.' }
+        ],
+        variables: [
+          { name: 'm', label: 'Slope f\'(x)', default: 1, min: 0, max: 5, step: 0.1 },
+          { name: 'dx', label: 'Interval Width', default: 4, min: 1, max: 10, step: 0.5 }
+        ],
+        calculate: (v) => `Length ≈ ${(Math.sqrt(1 + Math.pow(v.m, 2)) * v.dx).toFixed(2)} units`
       }
     ]
   },

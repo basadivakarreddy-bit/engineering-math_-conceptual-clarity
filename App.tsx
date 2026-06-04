@@ -7,6 +7,7 @@ import ProofAccordion from './components/ProofAccordion';
 import QuizModule from './components/QuizModule';
 import LearningModule from './components/LearningModule';
 import Auth from './components/Auth';
+import MathAnimation from './components/MathAnimation';
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -119,16 +120,23 @@ const App: React.FC = () => {
 
       {/* Hero Section */}
       <main className="pt-32 pb-20 px-6 max-w-7xl mx-auto">
-        <header className="max-w-3xl mb-16">
+        <header className="max-w-4xl mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold tracking-widest uppercase mb-6">
             {activeTab === 'foundations' ? 'Start with the Basics' : 'Advanced Engineering Concepts'}
           </span>
-          <h2 className={`text-5xl md:text-7xl font-extrabold mb-6 leading-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
-            {activeTab === 'foundations' ? 'The Foundations' : 'Master the Logic'} <br />
-            <span className="gradient-text">
-              {activeTab === 'foundations' ? 'of Modern Engineering.' : 'Behind the Machine.'}
-            </span>
-          </h2>
+          <div className="flex items-center justify-between gap-4">
+             <h2 className={`text-5xl md:text-7xl font-extrabold mb-6 leading-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              {activeTab === 'foundations' ? 'The Foundations' : 'Master the Logic'} <br />
+              <span className="gradient-text">
+                {activeTab === 'foundations' ? 'of Modern Engineering.' : 'Behind the Machine.'}
+              </span>
+            </h2>
+            {activeTab === 'foundations' && (
+              <div className="hidden md:block">
+                <MathAnimation />
+              </div>
+            )}
+          </div>
           <p className={`text-lg leading-relaxed mb-8 ${themeClasses.heroDesc}`}>
             {activeTab === 'foundations' 
               ? 'Algebra, Calculus, and Vector fundamentals reimagined for the 21st-century engineer.'
